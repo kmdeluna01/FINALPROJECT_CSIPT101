@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block title %}Loan Detail{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Loan Detail</h1>
+<dl class="row">
+    <dt class="col-sm-3">Loan ID</dt>
+    <dd class="col-sm-9">{{ loan.id }}</dd>
+
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">{{ loan.name }}</dd>
+
+    <dt class="col-sm-3">Amount</dt>
+    <dd class="col-sm-9">{{ loan.amount }}</dd>
+
+    <dt class="col-sm-3">Interest Rate</dt>
+    <dd class="col-sm-9">{{ loan.interest_rate }}</dd>
+
+    <dt class="col-sm-3">Term</dt>
+    <dd class="col-sm-9">{{ loan.term_year }}</dd>
+
+    <dt class="col-sm-3">Monthly</dt>
+    <dd class="col-sm-9">{{ loan.monthly_payment }}</dd>
+
+    <dt class="col-sm-3">Loan Status</dt>
+    <dd class="col-sm-9">{{ loan.status }}</dd>
+
+    <dt class="col-sm-3">Remaining Balance: </dt>
+    <dd class="col-sm-9">{{ remainig_balance }}</dd>
+</dl>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Pay</button>
+</form>
+
+<a href="{% url 'loan_update' loan.id %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'loan_delete' loan.id %}" class="btn btn-danger">Delete</a>
+{% endblock %}
